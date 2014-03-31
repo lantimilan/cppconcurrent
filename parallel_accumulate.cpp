@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <thread>
 #include <vector>
 
@@ -12,6 +13,9 @@ struct accumulate_block
 {
     void operator()(Iterator first, Iterator last, T& result)
     {
+        std::ostringstream oss;
+        oss << "Thread ID: " << std::this_thread::get_id() << std::endl;
+        std::cout << oss.str();
         result = std::accumulate(first, last, result);
     }
 };
